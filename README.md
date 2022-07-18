@@ -1,4 +1,3 @@
-# CryptoGame
-`nimble run` at root of proejct
-# wasm
-# floorEditor
+`git submodule init
+git submodule update
+nimble run` at root of project
