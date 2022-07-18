@@ -280,36 +280,12 @@ var allDrag=DragPoint(
 proc UpdateGameWindow() {.cdecl.} =
   echo "UpdateGameWindow"
   try:
-    when not defined(emscripten):
-      if inited:
-        try:
-          asyncdispatch.poll(0)
-        except:
-          discard
-
-    if download_parm>0:
-      echo fmt"downloading assets {download_parm}"
-      return;
+ 
     
-    if not asstes_inited:
-      echo "Finished3 all downloads"  
-      initAssets()
+    initAssets()
     if isKeyPressed(ENTER): playSoundMulti fxWav  
     asstes_inited=true
-    ##  Update
-    ## ----------------------------------------------------------------------------------
-    #updateCamera(addr(camera))
-    #updateCamera(addr(camera2D))
-
-    #echo camera2D.position
-    #camera2D.position.z =camera2D.position.z+1;
-    #camera.position.z = camera.position.z+1;
-    #updateCamera(addr(camera))
-    #updateCamera(addr(camera2D))
-    #camera.setCameraPosition(camera.position)
-    #setCameraPosition(camera.position)
-    #echo camera2D.position
-    
+   
     
     var mousePosition: Vector2 = getMousePosition()
     var mouseWheel=getMouseWheelMove()
@@ -398,27 +374,7 @@ proc UpdateGameWindow() {.cdecl.} =
       
       
       
-    
 
-      beginMode3D(camera):
-        ##  Draw the three models
-        #drawModel(modelA, vector3Zero(), 1.0, White)
-        #drawModel(modelB, (-2.6, 0.0, 0.0), 1.0, White)
-        #drawModel(modelC, (2.6, 0.0, 0.0), 1.0, White)
-        when false :
-          var i = -20
-          while i < 20:
-            drawModel(modelA, (i.float, 0.0, 2.0), 1.0, White)
-            inc(i, 2)
-          
-          
-          
-                
-        
-        #maskedView.visit((0.0,0.0,0.0),scale(1.0,1.0,1.0),camera)
-      
-
-        first=false
 
       
       when true:  

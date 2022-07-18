@@ -1,0 +1,55 @@
+
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "nimble",
+            "preLaunchTask": "nimbleBuild2",
+            "program": "${workspaceFolder}/src/main",
+            "args": [],
+            "cwd": "${workspaceFolder}",
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "release",
+            "preLaunchTask": "nimbleBuild2",
+            "program": "${workspaceFolder}/src/main",
+            "args": [],
+            "cwd": "${workspaceFolder}",
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "game0",
+            "preLaunchTask": "game0",
+            "program": "${workspaceFolder}/game0",
+            "args": [],
+            "cwd": "${workspaceFolder}",
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "nim: debug current file",
+            "preLaunchTask": "nim: build current file (for debugging)",
+            "program": "${workspaceFolder}/bin/${fileBasenameNoExtension}",
+            "args": [],
+            "cwd": "${workspaceFolder}",
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "nim: debug main",
+            "preLaunchTask": "nim: build main (for debugging)",
+            "program": "${workspaceFolder}/bin/main",
+            "args": [],
+            "cwd": "${workspaceFolder}",
+        }
+        
+    ]
+}

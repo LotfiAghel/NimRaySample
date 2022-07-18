@@ -30,34 +30,9 @@ globalScreenPos = Vector3(x: 0,y: 0,z:0.0) ;
 
 
       
-echo "go to download"
-just_for_Optimisation_not_clear_Blow_function()
-download_parm=download_parm+1
 
-var assets:seq[string]= @["resources/texel_checker.png",
-            "resources/w.png",
-            "resources/texel_checker2.png",
-            "resources/plasma.png",
-            "resources/raysan.png",
-
-
-            "resources/game/OpenSans-Bold.ttf",
-            "resources/mask.png",
-            "resources/floorplan.json",
-
-            
-            ]
     
-for idx,val in assets:
-  wasmDownload2(fmt"{val}")
-download_parm=download_parm-1
-echo "come from download"
 
-
-
-static :
-  echo "CompileTime= " , CompileTime
-echo "CompileTime= " , CompileTime
 
 import ../RayNim/Components/[Node,Anim,NodeP]
 
