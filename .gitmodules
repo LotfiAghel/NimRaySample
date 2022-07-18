@@ -1,6 +1,6 @@
 [submodule "RayNim"]
 	path = RayNim
-	url = git@github.com:LotfiAghel/RayNim.git
+	url = https://github.com/LotfiAghel/RayNim
 [submodule "NimUseFullMacros"]
 	path = NimUseFullMacros
-	url = git@github.com:LotfiAghel/NimUseFullMacros.git
+	url = https://github.com/LotfiAghel/NimUseFullMacros

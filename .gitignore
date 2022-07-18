@@ -1,0 +1,7 @@
+*.so
+cache/
+public/resources/
+public/index.wasm
+public/index.js
+public/public
+public/index.wasm
