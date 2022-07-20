@@ -10,7 +10,6 @@ import NimUseFullMacros/macroTool
 import NimUseFullMacros/ConstructorCreator/ConstructorCreator
 import NimUseFullMacros/ConstructorCreator/Basic
 import rlights
-import cc
 import RayNim/funcs/createSprite
 
 import asyncdispatch

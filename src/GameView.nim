@@ -7,7 +7,6 @@ import std/times
 import std/strformat
 from os import existsFile
 import asyncdispatch
-import cc
 import std/tables
 import RayNim/funcs/createSprite
 import NimUseFullMacros/ConstructorCreator/ConstructorCreator
