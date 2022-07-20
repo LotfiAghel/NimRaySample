@@ -9,8 +9,8 @@ from os import existsFile
 import asyncdispatch
 import cc
 import std/tables
-import ../RayNim/funcs/createSprite
-import ../NimUseFullMacros/ConstructorCreator/ConstructorCreator
+import RayNim/funcs/createSprite
+import NimUseFullMacros/ConstructorCreator/ConstructorCreator
 var designResolution* = Vector2(x:1980.0,y:1080)
 var screenWidth* = int(designResolution.x*0.9)
 var screenHeight* = int(designResolution.y*0.9)
@@ -34,7 +34,7 @@ globalScreenPos = Vector3(x: 0,y: 0,z:0.0) ;
     
 
 
-import ../RayNim/Components/[Node,Anim,NodeP]
+import RayNim/Components/[Node,Anim,NodeP]
 
 
 

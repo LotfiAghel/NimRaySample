@@ -5,13 +5,13 @@ import nimraylib_now
 from nimraylib_now/rlgl as rl import nil
 #import nimraylib_now/rlight
 import GameView
-import ../RayNim/Components/[Node,NodeP,Anim]
-import ../NimUseFullMacros/macroTool
-import ../NimUseFullMacros/ConstructorCreator/ConstructorCreator
-import ../NimUseFullMacros/ConstructorCreator/Basic
+import RayNim/Components/[Node,NodeP,Anim]
+import NimUseFullMacros/macroTool
+import NimUseFullMacros/ConstructorCreator/ConstructorCreator
+import NimUseFullMacros/ConstructorCreator/Basic
 import rlights
 import cc
-import ../RayNim/funcs/createSprite
+import RayNim/funcs/createSprite
 
 import asyncdispatch
 import std/sequtils
@@ -25,7 +25,7 @@ import std/deques
 import std/locks
 import std/json
 import std/streams
-import ../RayNim/cameraTool
+import RayNim/CameraTool
 
 
 
@@ -139,22 +139,12 @@ var inited=false
 proc initAssets()=
   echo "initAssets"
   
-  font = loadFontEx("resources/game/OpenSans-Bold.ttf", 64, nil, 0)
-  fxWav = loadSound("resources/sound.wav")         #  Load WAV audio file
-  #fxOgg = loadSound("resources/guitar_noodling.ogg")      #  Load OGG audio file
-
-  
-  setSoundVolume fxWav, 0.8
+ 
   
   defaultCamera=camera
 
   ##  Load models and texture
-  var z=genMeshTorus(0.4, 1.0, 16, 32)
-  var z2:Mesh=z;
-
-  echo z.texcoords.addr == z2.texcoords.addr
-
-  #z2.vertexCount=z.vertexCount
+  
   
   emptyWhite = loadTexture2("resources/w.png")
   circle = loadTexture2("resources/raysan.png")
@@ -163,20 +153,28 @@ proc initAssets()=
 
   
   
-  #backGroundNode = spriteNodeCreate(circle).setPostion((screenWidth/2, screenHeight/2, 0.0))
+
   backGroundNode = spriteNodeCreate(circle).setPostion((0.0,0.0,0.0))
   backGroundNode.addOnUpdate(SetTransformTo.Create(
     scaleProvider=LinearProvider[Vector3](
       time: SinEfect(valueSource:LinearProvider[float](
         time:globalTime,
-        start: 0.0,
-        endPosition: 20.0
+        start: 2.0,
+        endPosition: 2.0
       )),
       start: (0.0,0.0,0.0),
-      endPosition: (10.0,10.0,10.0)
+      endPosition: (3.0,3.0,3.0)
     ),
     rotateProvider= ConstProvider[Vector3](value:(0.0,0.0,0.0))
-  ))
+  )).addOnUpdate(
+    MoveTo(
+      provider:ProceduralProvider[Vector3](
+        time: globalTime,
+        procedure:proc(t:float):Vector3=
+          return Vector3(x:sin(t)*100*2,y:sin(2*t)*100,z:0.0)
+      )
+    )
+  )
   #[
     scale(sin(globalTime.value*20)*(10,10,10))
   ]#
@@ -201,39 +199,18 @@ proc initAssets()=
   ##  Set our game to run at 60 frames-per-second
   ## --------------------------------------------------------------------------------------
   ##  Main game loop
-  
- 
-  inited=true
-
-  
-
- 
- 
-  swirlCenter = [(screenWidth div 2).cfloat, (screenHeight div 2).cfloat]
-
-  
-  echo "go to init floor"
-  
-  
-  
-  echo "init assets"
-
- 
 
 
 
-
-var asstes_inited=false
 
 import macros
 dumpTree:
   now().utc
-import system
-import os
+
 
 
       
-const myResource = "todo"
+
 var ddata : DragDataPtr =nil
 
 var zz=0.0#camera2D.target.z
@@ -283,8 +260,7 @@ proc UpdateGameWindow() {.cdecl.} =
  
     
     initAssets()
-    if isKeyPressed(ENTER): playSoundMulti fxWav  
-    asstes_inited=true
+
    
     
     var mousePosition: Vector2 = getMousePosition()
@@ -404,29 +380,12 @@ proc UpdateGameWindow() {.cdecl.} =
 proc main0*() =
 
 
-  when not defined(emscripten) :
-    while not windowShouldClose():
+  
+  while not windowShouldClose():
       UpdateGameWindow()
-    echo "!emscripten"
-    ECHO "!emscripten"
-  else:
-    echo "go to run emscriptenSetMainLoop"
-    emscriptenSetMainLoop(UpdateGameWindow, 0, 1)
-    echo "emscripten"
-    ECHO "emscripten"
-
-  ##  De-Initialization
-  ## --------------------------------------------------------------------------------------
-  
-  ##  Unload the model A
-  #unloadModel(modelB)
-  ##  Unload the model B
-  
-  
+ 
   closeWindow()
-  ##  Close window and OpenGL context
-  ## --------------------------------------------------------------------------------------
-  #closeWindow()
+  
 
 when isMainModule: main0()
 
