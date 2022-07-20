@@ -155,11 +155,11 @@ proc initAssets()=
   
 
   backGroundNode = spriteNodeCreate(circle).setPostion((0.0,0.0,0.0))
-  backGroundNode.addOnUpdate(SetTransformTo.Create(
-    scaleProvider=LinearProvider[Vector3](
+  backGroundNode.addOnUpdate(SetTransformTo.Create(   
+    scaleProvider=LinearProvider[Vector3](  # sin(globalTime*(2.0-0.0)+0.0)*( [ 3.0,3.0,3.0]-[0.0,0.0,0.0])+[0.0,0.0,0.0]
       time: SinEfect(valueSource:LinearProvider[float](
         time:globalTime,
-        start: 2.0,
+        start: 0.0,
         endPosition: 2.0
       )),
       start: (0.0,0.0,0.0),
@@ -175,7 +175,7 @@ proc initAssets()=
       provider:ProceduralProvider[Vector3](
         time: globalTime,
         procedure:proc(t:float):Vector3=
-          return Vector3(x:sin(t)*100*2,y:sin(2*t)*100,z:0.0)
+          return Vector3(x:sin(t)*100*2,y:sin(4*t)*100,z:0.0)
       )
     )
   )
