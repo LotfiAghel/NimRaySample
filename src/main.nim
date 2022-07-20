@@ -137,9 +137,10 @@ proc onClick2()=
 
 var inited=false
 proc initAssets()=
+  
   echo "initAssets"
   
- 
+  
   
   defaultCamera=camera
 
@@ -165,7 +166,11 @@ proc initAssets()=
       start: (0.0,0.0,0.0),
       endPosition: (3.0,3.0,3.0)
     ),
-    rotateProvider= ConstProvider[Vector3](value:(0.0,0.0,0.0))
+    rotateProvider: LinearProvider[Vector3](
+      time: globalTime,
+      start: (0.0,0.0,0.0),
+      endPosition: (0.0,0.0,3.0)
+    )
   )).addOnUpdate(
     MoveTo(
       provider:ProceduralProvider[Vector3](
@@ -175,6 +180,7 @@ proc initAssets()=
       )
     )
   )
+  backGroundNode.addChild spriteNodeCreate(circle,0.1).setPostion((100.0,0.0,0.0))
   #[
     scale(sin(globalTime.value*20)*(10,10,10))
   ]#
@@ -254,12 +260,14 @@ var allDrag=DragPoint(
           #t.rect.y=d.globalCurPosition.y
       )
 
+initAssets()
+
 proc UpdateGameWindow() {.cdecl.} =
   echo "UpdateGameWindow"
   try:
  
     
-    initAssets()
+    
 
    
     
