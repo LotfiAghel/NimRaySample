@@ -2,7 +2,7 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "nimbleBuild2",
+            "label": "nimbleBuild",
             "command": "nimble",
             "args": [
                 "build",
@@ -15,21 +15,6 @@
             },
             "type": "shell"
         },
-        {
-            "label": "nimbleBuild2",
-            "command": "nimble",
-            "args": [
-                "build",
-                "-d:release",
-                "-o:${workspaceRoot}/src/main"
-            ],
-            "options": {
-                "cwd": "${workspaceRoot}"
-            },
-            "type": "shell"
-        },
-
-        
         {
             "label": "game0",
             "command": "nimble",
@@ -44,36 +29,6 @@
                 "cwd": "${workspaceRoot}"
             },
             "type": "shell"
-        },
-        {
-            "label": "nim: build current file (for debugging)",
-            "command": "nim",
-            "args": [
-                "compile",
-                "-g",
-                "--debugger:native",
-                "-o:${workspaceRoot}/bin/${fileBasenameNoExtension}",
-                "${relativeFile}"
-            ],
-            "options": {
-                "cwd": "${workspaceRoot}"
-            },
-            "type": "shell",
-        },
-        {
-            "label": "nim: build main (for debugging)",
-            "command": "nim",
-            "args": [
-                "compile",
-                "-g",
-                "--debugger:native",
-                "-o:${workspaceRoot}/bin/main",
-                "src/main.nim"
-            ],
-            "options": {
-                "cwd": "${workspaceRoot}"
-            },
-            "type": "shell",
         }
     ]
 }
